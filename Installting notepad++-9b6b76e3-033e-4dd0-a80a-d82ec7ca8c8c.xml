@@ -1,0 +1,39 @@
+<joblist>
+  <job>
+    <defaultTab>nodes</defaultTab>
+    <description>Installting notepad++</description>
+    <dispatch>
+      <excludePrecedence>true</excludePrecedence>
+      <keepgoing>false</keepgoing>
+      <rankOrder>ascending</rankOrder>
+      <successOnEmptyNodeFilter>false</successOnEmptyNodeFilter>
+      <threadcount>1</threadcount>
+    </dispatch>
+    <executionEnabled>true</executionEnabled>
+    <id>9b6b76e3-033e-4dd0-a80a-d82ec7ca8c8c</id>
+    <loglevel>INFO</loglevel>
+    <name>Installting notepad++</name>
+    <nodeFilterEditable>false</nodeFilterEditable>
+    <nodefilters>
+      <filter>.*</filter>
+    </nodefilters>
+    <nodesSelectedByDefault>true</nodesSelectedByDefault>
+    <plugins />
+    <scheduleEnabled>true</scheduleEnabled>
+    <sequence keepgoing='false' strategy='node-first'>
+      <command>
+        <node-step-plugin type='com.batix.rundeck.plugins.AnsiblePlaybookWorflowNodeStep'>
+          <configuration>
+            <entry key='ansible-base-dir-path' value='/etc/ansible/' />
+            <entry key='ansible-become' value='false' />
+            <entry key='ansible-playbook' value='/var/lib/rundeck/notepad.yaml' />
+            <entry key='ansible-ssh-auth-type' value='privateKey' />
+            <entry key='ansible-ssh-passphrase-option' value='option.password' />
+            <entry key='ansible-ssh-use-agent' value='false' />
+          </configuration>
+        </node-step-plugin>
+      </command>
+    </sequence>
+    <uuid>9b6b76e3-033e-4dd0-a80a-d82ec7ca8c8c</uuid>
+  </job>
+</joblist>
