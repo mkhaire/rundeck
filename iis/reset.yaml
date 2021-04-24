@@ -1,0 +1,9 @@
+---
+- hosts: win
+
+  tasks:
+  - name: Restart IIS
+    win_iis_website:
+      name: "Site A"
+      state: restarted
+

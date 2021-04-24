@@ -1,0 +1,42 @@
+---
+- hosts: windows
+  vars:
+    ansible_siteA_path: "c:\\inetpub\\wwwroot\\siteA"
+    ansible_siteB_path: "c:\\inetpub\\wwwroot\\siteB"
+  tasks:
+  - name: install-iis
+    win_feature:
+      name: Web-Server
+      state: present
+      include_sub_features: yes
+      include_management_tools: yes
+  - name: create site A path
+    win_file: path={{ ansible_siteA_path }} state=directory
+
+  - name: SiteA-website-index
+    win_copy:
+      src: files/index.html
+      dest: "C:\\inetpub\\wwwroot\\siteA\\index.html"
+
+  - name: create Site A
+    win_iis_website:
+      name: "Site A"
+      state: started
+      port: 8080
+      physical_path: "{{ ansible_siteA_path }}"
+
+  - name: create site B path
+    win_file: path={{ ansible_siteB_path }} state=directory
+
+  - name: SiteA-website-index
+    win_copy:
+      src: files/index2.html
+      dest: "C:\\inetpub\\wwwroot\\siteB\\index.html"
+
+  - name: create Site B
+    win_iis_website:
+      name: "Site B"
+      state: started
+      port: 9090
+      physical_path: "{{ ansible_siteB_path }}"
+
